@@ -1,0 +1,62 @@
+
+<html>
+<head>
+<script type="text/javascript">
+function BISONGraph1(datas) 
+{
+var BISONyear = (datas);
+
+
+
+document.getElementById("fullTable").innerHTML = ("<TABLE width = '80%' border = '1'><caption><h2>Occurrences by decade for <b><i>"+document.forms.getString.sname.value+" </i></b> in <a href = 'http://bison.usgs.ornl.gov' target = 'new'> BISON</a> </h2><tr><td>"+BISONyear.facet_counts.facet_queries['year:[* TO 1800]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1801 TO 1810]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1811 TO 1820]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1821 TO 1830]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1831 TO 1840]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1841 TO 1850]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1851 TO 1860]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1861 TO 1870]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1871 TO 1880]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1881 TO 1890]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1891 TO 1900]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1901 TO 1910]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1911 TO 1920]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1921 TO 1930]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1931 TO 1940]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1941 TO 1950]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1951 TO 1960]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1961 TO 1970]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1971 TO 1980]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1981 TO 1990]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[1991 TO 2000]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[2001 TO 2010]']+"</td><td>"+BISONyear.facet_counts.facet_queries['year:[2011 TO *]']+"</td><tr>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[* TO 1800]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1801 TO 1810]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1811 TO 1820]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1821 TO 1830]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1831 TO 1840]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1841 TO 1850]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1851 TO 1860]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1861 TO 1870]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1871 TO 1880]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1881 TO 1890]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1891 TO 1900]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1901 TO 1910]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1911 TO 1920]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1921 TO 1930]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1931 TO 1940]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1941 TO 1950]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1951 TO 1960]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1961 TO 1970]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1971 TO 1980]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1981 TO 1990]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[1991 TO 2000]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[2001 TO 2010]'] + "' width='42'></td>"+"<td VALIGN = 'bottom'><img src='greenchart.png' height='" + BISONyear.facet_counts.facet_queries['year:[2011 TO *]'] + "' width='42'></td><tr><td><font size = '-3'><font size = '-3'>Up to<br>1800</td><td><font size = '-3'><center>1801<br>to<br>1810</center></td><td><font size = '-3'><center>1811<br>to<br>1820</center></td><td><font size = '-3'><center>1821<br>to<br>1830</center></td><td><font size = '-3'><center>1831<br>to<br>1840</center></td><td><font size = '-3'><center>1841<br>to<br>1850</center></td><td><font size = '-3'><center>1851<br>to<br>1860</center></td><td><font size = '-3'><center>1861<br>to<br>1870</center></td><td><font size = '-3'><center>1871<br>to<br>1880</center></td><td><font size = '-3'><center>1881<br>to<br>1890</center></td><td><font size = '-3'><center>1891<br>to<br>1900</center></td><td><font size = '-3'><center>1901<br>to<br>1910</center></td><td><font size = '-3'><center>1911<br>to<br>1920</center></td><td><font size = '-3'><center>1921<br>to<br>1930</center></td><td><font size = '-3'><center>1931<br>to<br>1940</center></td><td><font size = '-3'><center>1941<br>to<br>1950</center></td><td><font size = '-3'><center>1951<br>to<br>1960</center></td><td><font size = '-3'><center>1961<br>to<br>1970</center></td><td><font size = '-3'><center>1971<br>to<br>1980</center></td><td><font size = '-3'><center>1981<br>to<br>1990</center></td><td><font size = '-3'><center>1991<br>to<br>200</center></td><td><font size = '-3'><center>2001<br>to<br>2010</center></td><td><font size = '-3'><center>After<br>2010</center></td></tr></font></TABLE>");
+
+
+
+}
+
+function jsonp(url) 
+{
+var head = document.head;
+var script = document.createElement("script");
+script.setAttribute("src", url);
+head.appendChild(script);
+head.removeChild(script);
+}
+
+
+function getname()
+{
+var input = (document.forms.getString.sname.value)
+var x = ("http://bisonapi.usgs.ornl.gov/solr/occurrences/select/?q=scientific_name%3A%22")
+var y = ("%22&rows=0&facet=true&facet.query=year:[*%20TO%201800]&facet.query=year:[1801%20TO%201810]&facet.query=year:[1811%20TO%201820]&facet.query=year:[1821%20TO%201830]&facet.query=year:[1831%20TO%201840]&facet.query=year:[1841%20TO%201850]&facet.query=year:[1851%20TO%201860]&facet.query=year:[1861%20TO%201870]&facet.query=year:[1871%20TO%201880]&facet.query=year:[1881%20TO%201890]&facet.query=year:[1891%20TO%201900]&facet.query=year:[1901%20TO%201910]&facet.query=year:[1911%20TO%201920]&facet.query=year:[1921%20TO%201930]&facet.query=year:[1931%20TO%201940]&facet.query=year:[1941%20TO%201950]&facet.query=year:[1951%20TO%201960]&facet.query=year:[1961%20TO%201970]&facet.query=year:[1971%20TO%201980]&facet.query=year:[1981%20TO%201990]&facet.query=year:[1991%20TO%202000]&facet.query=year:[2001%20TO%202010]&facet.query=year:[2011%20TO%20*]&rows=100&wt=json&json.wrf=BISONGraph1");
+jsonp(x+input+y);
+
+}
+		
+</script>
+
+
+</head>
+<body>
+
+
+
+<form name=getString action="javascript:getname()">
+Enter a valid scientific name:
+<input type=text name=sname  size=19>
+<input type=submit >
+</form>
+
+<p id="fullTable"></p>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
