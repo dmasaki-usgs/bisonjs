@@ -1,0 +1,161 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+
+
+function getFIPS()
+
+{
+var input = (document.forms.getFIPSF.sname.value);
+var x = ("http://www.broadbandmap.gov/broadbandmap/county-availability/jun2012/stateid/")
+var y = ("?format=jsonp&callback=FIPSFile");
+if (input == "AL" ){sFIPS="01";}
+else if (input == "AK" ){sFIPS="02";}
+else if (input == "AZ" ){sFIPS="04";}
+else if (input == "AR" ){sFIPS="05";}
+else if (input == "CA" ){sFIPS="06";}
+else if (input == "CO" ){sFIPS="08";}
+else if (input == "CT" ){sFIPS="09";}
+else if (input == "DE" ){sFIPS="10";}
+else if (input == "DC" ){sFIPS="11";}
+else if (input == "FL" ){sFIPS="12";}
+else if (input == "GA" ){sFIPS="13";}
+else if (input == "HI" ){sFIPS="15";}
+else if (input == "ID" ){sFIPS="16";}
+else if (input == "IL" ){sFIPS="17";}
+else if (input == "IN" ){sFIPS="18";}
+else if (input == "IA" ){sFIPS="19";}
+else if (input == "KS" ){sFIPS="20";}
+else if (input == "KY" ){sFIPS="21";}
+else if (input == "LA" ){sFIPS="22";}
+else if (input == "ME" ){sFIPS="23";}
+else if (input == "MD" ){sFIPS="24";}
+else if (input == "MA" ){sFIPS="25";}
+else if (input == "MI" ){sFIPS="26";}
+else if (input == "MN" ){sFIPS="27";}
+else if (input == "MS" ){sFIPS="28";}
+else if (input == "MO" ){sFIPS="29";}
+else if (input == "MT" ){sFIPS="30";}
+else if (input == "NE" ){sFIPS="31";}
+else if (input == "NV" ){sFIPS="32";}
+else if (input == "NH" ){sFIPS="33";}
+else if (input == "NJ" ){sFIPS="34";}
+else if (input == "NM" ){sFIPS="35";}
+else if (input == "NY" ){sFIPS="36";}
+else if (input == "NC" ){sFIPS="37";}
+else if (input == "ND" ){sFIPS="38";}
+else if (input == "OH" ){sFIPS="39";}
+else if (input == "OK" ){sFIPS="40";}
+else if (input == "OR" ){sFIPS="41";}
+else if (input == "PA" ){sFIPS="42";}
+else if (input == "RI" ){sFIPS="44";}
+else if (input == "SC" ){sFIPS="45";}
+else if (input == "SD" ){sFIPS="46";}
+else if (input == "TN" ){sFIPS="47";}
+else if (input == "TX" ){sFIPS="48";}
+else if (input == "UT" ){sFIPS="49";}
+else if (input == "VT" ){sFIPS="50";}
+else if (input == "VA" ){sFIPS="51";}
+else if (input == "WA" ){sFIPS="53";}
+else if (input == "WV" ){sFIPS="54";}
+else if (input == "WI" ){sFIPS="55";}
+else if (input == "WY" ){sFIPS="56";}
+else if (input == "PR" ){sFIPS="72";}
+else{alert("The State code that you entered was not valid")}
+jsonp(x+sFIPS+y);
+}
+
+
+function FIPSFile(data)
+
+{
+var FIPSq = (data);
+var input2 = (document.forms.getFIPSF.cText.value);
+for (var x = 0; x < data.Results.length; x++)
+{
+var county = data.Results[x].countyName;
+var cFIPS = parseFloat(data.Results[x].countyId);
+if (county == input2)
+{
+var xx = ("http://bisonapi.usgs.ornl.gov/solr/occurrences/select/?q=county:")
+var yy = ("&rows=0&facet=true&facet.field=scientific_name&facet.limit=-1&facet.mincount=1&wt=json&json.wrf=BISONList2");
+jsonp2(xx+cFIPS+yy);
+}
+}
+}
+
+
+function BISONList2(datas)
+
+{
+var BISONyear = (datas);
+var input3 = (document.forms.getFIPSF.cText.value);
+var input4 = (document.forms.getFIPSF.sname.value);
+if (input4 == "AK"){input5 = ("Borough")}
+else if (input4 == "LA"){input5 = ("Parish")}
+else if (input4 == "PR"){input5 = ("Municipio")}
+else {input5 = ("County")} 
+var lend = (datas.facet_counts.facet_fields.scientific_name.length)
+var leng = 0;
+var list = ("<h3>Taxon List:</h3> ");
+var i = 0
+for (var i = 0; i < lend-1; i++)
+{
+var lstr = datas.facet_counts.facet_fields.scientific_name[i];
+if (isNaN(lstr)==true)
+{
+var listo = lstr[0].toUpperCase() + lstr.substring(1);
+var list = (list +"<br><i>"+listo+"</i>");
+var leng = (leng+1);
+}
+}
+document.getElementById("length").innerHTML = ("<h3>There are "+leng+" taxa documented in <a href = 'http://bison.usgs.ornl.gov'>BISON</a> for "+input3+" "+input5+", "+input4);
+document.getElementById("listHTML").innerHTML = (list);
+}
+
+
+function jsonp(url) 
+{
+var head = document.head;
+var script = document.createElement("script");
+script.setAttribute("src", url);
+head.appendChild(script);
+head.removeChild(script);
+}
+
+
+function jsonp2(url) 
+{
+var head = document.head;
+var script = document.createElement("script");
+script.setAttribute("src", url);
+head.appendChild(script);
+head.removeChild(script);
+}
+
+</script>
+</head>
+<body>
+<center>
+<h3>This form will produce a checklist of taxa doucmented in <a href = "http://bison.usgs.ornl.gov">BISON</a> for a given county, parish, municipio or burough</H3> 
+
+<form name=getFIPSF action="javascript:getFIPS()">
+<b>State:
+<input type=text name=sname  size=2>
+   County <i>(or equivalent)</i>:
+<input type=text name=cText  size=15>
+<input type=submit>
+</form></b>
+<p style="font-size:15px">(Please use the two capital letter state abbreviation and do not put "County", "Parish", "Municipio" or "Burough" after the name.)</p>
+</center>
+<p id="length"></p>
+<span id="listHTML"></span>
+</body>
+</html>
+
+
+
+
+
