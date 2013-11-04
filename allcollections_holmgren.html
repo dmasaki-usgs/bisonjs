@@ -1,0 +1,110 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script>
+var WEST = -171.24647;
+var SOUTH = 17.65834;
+var EAST = -63.45882;
+var NORTH = 71.72864;
+var WIDTH  = 400;  // The width of the map in pixels.
+var HEIGHT = 400;  // The height of the map in pixels.
+var image_url = "http://basemap.nationalmap.gov/ArcGIS/rest/services/TNM_Vector_Small/MapServer/export?LAYERS=show%3A0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%2C8%2C9%2C10%2C11%2C12&SRS=EPSG%3A4326&TRANSPARENT=true&FORMAT=png&BBOX=" +
+WEST + "," + SOUTH + "," + EAST + "," + NORTH  + "&SIZE=" + WIDTH + "%2C" + HEIGHT + "&F=image&BBOXSR=4326&IMAGESR=3857";
+
+
+function jsonp(url) 
+{
+var head = document.head;
+var script = document.createElement("script");
+script.setAttribute("src", url);
+head.appendChild(script);
+head.removeChild(script);
+}
+
+
+function BISONObject(datas)
+{
+var BISONObject = (datas);
+var leng = (datas.response.numFound);
+document.getElementById("length").innerHTML = ("<h3>There are "+leng+" collections documented in <a href = 'http://bison.usgs.ornl.gov'>BISON</a> for Noel Holmgren.</h3><br>");
+var list = ("<br><b>COLLECTIONS LIST:</b><br> ");
+var x = 0;
+for (var x=0;x<datas.response.docs.length; x++)
+{
+var name = datas.response.docs[x].scientific_name;
+var collector = datas.response.docs[x].collector;
+var provider = datas.response.docs[x].provider;
+var date = datas.response.docs[x].occurrence_date;
+
+var list = (list+"<br>"+"<i><b>"+name+"</i></b>, "+collector+", "+date+", "+provider);
+
+}
+document.getElementById("listHTML").innerHTML = (list);
+}
+
+
+function myScript(p) {	
+	var obj = (p);
+	var length = obj.response.docs.length;
+	var div = document.getElementsByTagName("")
+	for (var i = 0; i < length; i++) {
+		var record = obj.response.docs[i];
+	
+		var c = document.getElementById("container");
+		var str =  document.createElement("div"); 
+		/** when converting from world coordinates to screen coordinates we use the following formula:  
+		x' = (x - x0) *slope_X;
+		y' = -(y - y0 * slope_Y; */
+		var slope_X = 400/(EAST - WEST);
+		var slope_Y = 270/(NORTH - SOUTH);
+
+		var x = (record.longitude - WEST) * slope_X;
+		var y = -((record.latitude - NORTH)-22) * slope_Y;
+		str.style.left = Math.round(x) + "px";
+		str.style.top = Math.round(y) + "px";
+		
+		str.style.position = "absolute";
+
+		
+		var txt = document.createTextNode("*");
+		str.appendChild(txt);
+		c.appendChild(str);
+	}	
+}
+
+
+function update2() {
+document.getElementById("biodiversity").src=image_url;
+
+jsonp("http://bisonapi.usgs.ornl.gov/solr/occurrences/select/?q=collector:%20*Holmgren* AND collector:%20N*&rows=30000&sort=scientific_name%20asc&wt=json&json.wrf=BISONObject");
+
+
+jsonp("http://bisonapi.usgs.ornl.gov/solr/occurrences/select/?q=collector:%20*Holmgren* AND collector:%20N* AND county:{1 TO 99999}&rows=18000&wt=json&json.wrf=myScript");
+
+}
+
+
+
+
+
+
+
+</script>
+</head>
+<body onload="update2()">
+
+
+<b><font size = '1' color = 'blue'>
+<div id="container"><img src="dummy.gif" style="position:absolute;left:0;right:0;" id="biodiversity"></div>
+</font>
+
+
+<div id="length" style="position: absolute; left: 0px; top: 420px;"></div>
+
+<div id="listHTML" style="position: absolute; left: 0px; top: 450px;"></div>
+
+
+</body>
+</html>
